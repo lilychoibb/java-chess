@@ -6,6 +6,9 @@ import java.util.List;
 
 public class MoveState implements GameCommandState{
 
+    private static final int MOVE_SOURCE_SQUARE_INDEX = 0;
+    private static final int TARGET_SQUARE_INDEX = 1;
+
     private MoveState() {}
 
     private static class SingleInstanceHolder {
@@ -25,7 +28,9 @@ public class MoveState implements GameCommandState{
     public MoveState executeMoveCommand(ChessBoard chessBoard, List<String> input) {
         ChessGame chessGame = new ChessGame(chessBoard);
         List<Square> moveSquare = chessGame.settingMoveSquare(input);
-        chessGame.executeTurn(moveSquare.get(0), moveSquare.get(1));
+        Square moveSource = moveSquare.get(MOVE_SOURCE_SQUARE_INDEX);
+        Square target = moveSquare.get(TARGET_SQUARE_INDEX);
+        chessGame.executeTurn(moveSource, target);
         return MoveState.getInstance();
     }
 }
