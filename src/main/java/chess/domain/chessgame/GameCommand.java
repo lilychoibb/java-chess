@@ -25,15 +25,15 @@ public enum GameCommand {
         return command.equals(input);
     }
 
-    public static boolean isNotFinishedGame(GameCommand gameCommand) {
-        return !gameCommand.equals(END);
+    public boolean isNotFinishedGame() {
+        return !command.equals(END.command);
     }
 
-    public static boolean isGameStarted(GameCommand gameCommand) {
-        return gameCommand.equals(START);
+    public boolean isGameStarted() {
+        return command.equals(START.command);
     }
 
-    public static boolean isMovedChessPiece(GameCommand gameCommand) {
-        return gameCommand.equals(MOVE);
+    public boolean isMovedChessPiece() {
+        return command.equals(MOVE.command);
     }
 }

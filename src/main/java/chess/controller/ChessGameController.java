@@ -1,9 +1,9 @@
 package chess.controller;
 
 import chess.domain.chessboard.ChessBoard;
-import chess.domain.chessboard.Square;
-import chess.domain.chessgame.ChessGame;
+import chess.domain.chessgame.EndState;
 import chess.domain.chessgame.GameCommand;
+import chess.domain.chessgame.GameCommandExecutor;
 import chess.dto.ChessBoardDto;
 import chess.view.InputView;
 import chess.view.OutputView;
@@ -35,27 +35,24 @@ public class ChessGameController {
         ChessBoard chessBoard = new ChessBoard();
         GameCommand gameCommand = initialGameCommand;
         List<String> input = initialInput;
-        while (GameCommand.isNotFinishedGame(gameCommand)) {
-            executeStartCommand(gameCommand, chessBoard);
-            executeMoveCommand(gameCommand, chessBoard, input);
+        GameCommandExecutor gameCommandExecutor = new GameCommandExecutor(EndState.getInstance());
+        while (gameCommand.isNotFinishedGame()) {
+            executeGameCommand(chessBoard, gameCommand, gameCommandExecutor, input);
             input = repeatUntilSuccess(InputView::requestGameCommand);
             gameCommand = GameCommand.findGameCommand(input.get(GAME_COMMAND_INDEX));
         }
     }
 
-    private void executeStartCommand(GameCommand gameCommand, ChessBoard chessBoard) {
-        if (GameCommand.isGameStarted(gameCommand)) {
-            printChessBoard(chessBoard);
+    private void executeGameCommand(ChessBoard chessBoard, GameCommand gameCommand,
+                                    GameCommandExecutor gameCommandExecutor,
+                                    List<String> input) {
+        if (gameCommand.isGameStarted()) {
+            gameCommandExecutor.executeStartCommand();
         }
-    }
-
-    private void executeMoveCommand(GameCommand gameCommand, ChessBoard chessBoard, List<String> input) {
-        if (GameCommand.isMovedChessPiece(gameCommand)) {
-            ChessGame chessGame = new ChessGame(chessBoard);
-            List<Square> moveSquare = chessGame.settingMoveSquare(input);
-            chessGame.executeTurn(moveSquare.get(0), moveSquare.get(1));
-            printChessBoard(chessBoard);
+        if (gameCommand.isMovedChessPiece()) {
+            gameCommandExecutor.executeMoveCommand(chessBoard, input);
         }
+        printChessBoard(chessBoard);
     }
 
     private void printChessBoard(ChessBoard chessBoard) {

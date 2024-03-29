@@ -21,16 +21,19 @@ class GameCommandTest {
 
     @Test
     void GameCommand가_END가_아닐_경우_true를_반환한다() {
-        assertThat(GameCommand.isNotFinishedGame(GameCommand.START)).isTrue();
+        GameCommand gameCommand = GameCommand.START;
+        assertThat(gameCommand.isNotFinishedGame()).isTrue();
     }
 
     @Test
     void GameCommand가_START일_경우_true를_반환한다() {
-        assertThat(GameCommand.isGameStarted(GameCommand.START)).isTrue();
+        GameCommand gameCommand = GameCommand.START;
+        assertThat(gameCommand.isGameStarted()).isTrue();
     }
 
     @Test
     void GameCommand가_MOVE일_경우_true를_반환한다() {
-        assertThat(GameCommand.isMovedChessPiece(GameCommand.MOVE)).isTrue();
+        GameCommand gameCommand = GameCommand.MOVE;
+        assertThat(gameCommand.isMovedChessPiece()).isTrue();
     }
 }
