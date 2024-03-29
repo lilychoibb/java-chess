@@ -4,7 +4,6 @@ import chess.domain.chessboard.Numbering;
 import chess.domain.chessboard.Square;
 import chess.domain.chesspiece.ChessPiece;
 import chess.dto.ChessBoardDto;
-import chess.dto.ChessPieceDto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
