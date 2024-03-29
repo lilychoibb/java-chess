@@ -21,6 +21,12 @@ public class ChessBoard {
         this(BOARD_GENERATOR.generate());
     }
 
+    public void move(Square startSquare, Square targetSquare) {
+        ChessPiece chessPiece = findChessPieceOnSquare(startSquare);
+        ChessPieceProperty chessPieceProperty = chessPiece.getChessPieceProperty();
+        chessPieceProperty.executeMoveStrategy(this, startSquare, targetSquare);
+    }
+
     public ChessPiece findChessPieceOnSquare(Square findSquare) {
         return board.get(findSquare);
     }

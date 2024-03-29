@@ -1,8 +1,5 @@
 package chess.domain.chesspiece;
 
-import chess.domain.chessboard.ChessBoard;
-import chess.domain.chessboard.Square;
-
 public class ChessPiece {
 
     private final Camp camp;
@@ -11,10 +8,6 @@ public class ChessPiece {
     public ChessPiece(Camp camp, ChessPieceProperty chessPieceProperty) {
         this.camp = camp;
         this.chessPieceProperty = chessPieceProperty;
-    }
-
-    public void move(ChessBoard chessBoard, Square startSquare, Square targetSquare) {
-        chessPieceProperty.executeMoveStrategy(chessBoard, startSquare, targetSquare);
     }
 
     public ChessPieceType getChessPieceType() {
@@ -31,5 +24,9 @@ public class ChessPiece {
 
     public Camp getCamp() {
         return camp;
+    }
+
+    public ChessPieceProperty getChessPieceProperty() {
+        return chessPieceProperty;
     }
 }

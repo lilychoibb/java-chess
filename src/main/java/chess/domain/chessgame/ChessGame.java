@@ -2,7 +2,6 @@ package chess.domain.chessgame;
 
 import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
-import chess.domain.chesspiece.ChessPiece;
 import java.util.List;
 
 public class ChessGame {
@@ -28,7 +27,6 @@ public class ChessGame {
     }
 
     public void executeTurn(Square moveSource, Square target) {
-        ChessPiece chessPieceOnSquare = chessBoard.findChessPieceOnSquare(moveSource);
-        chessPieceOnSquare.move(chessBoard, moveSource, target);
+        chessBoard.move(moveSource, target);
     }
 }
