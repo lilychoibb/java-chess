@@ -29,13 +29,15 @@ public class ChessBoard {
     }
 
     public Square findForwardSquare(Square square) {
-        Numbering numbering = Numbering.findNextNumbering(square.getNumbering());
-        return new Square(square.getLettering(), numbering);
+        Numbering numbering = square.getNumbering();
+        Numbering nextNumbering = numbering.findNextNumbering();
+        return new Square(square.getLettering(), nextNumbering);
     }
 
     public Square findBackwardSquare(Square square) {
-        Numbering numbering = Numbering.findPreviousNumbering(square.getNumbering());
-        return new Square(square.getLettering(), numbering);
+        Numbering numbering = square.getNumbering();
+        Numbering previousNumbering = numbering.findPreviousNumbering();
+        return new Square(square.getLettering(), previousNumbering);
     }
 
     public Square findLeftSquare(Square square) {
@@ -53,29 +55,33 @@ public class ChessBoard {
     public Square findLeftForwardDiagonalSquare(Square square) {
         Lettering lettering = square.getLettering();
         Lettering leftLettering = lettering.findPreviousLettering();
-        Numbering numbering = Numbering.findNextNumbering(square.getNumbering());
-        return new Square(leftLettering, numbering);
+        Numbering numbering = square.getNumbering();
+        Numbering nextNumbering = numbering.findNextNumbering();
+        return new Square(leftLettering, nextNumbering);
     }
 
     public Square findRightForwardDiagonalSquare(Square square) {
         Lettering lettering = square.getLettering();
         Lettering rightLettering = lettering.findNextLettering();
-        Numbering numbering = Numbering.findNextNumbering(square.getNumbering());
-        return new Square(rightLettering, numbering);
+        Numbering numbering = square.getNumbering();
+        Numbering nextNumbering = numbering.findNextNumbering();
+        return new Square(rightLettering, nextNumbering);
     }
 
     public Square findLeftBackwardDiagonalSquare(Square square) {
         Lettering lettering = square.getLettering();
         Lettering leftLettering = lettering.findPreviousLettering();
-        Numbering numbering = Numbering.findPreviousNumbering(square.getNumbering());
-        return new Square(leftLettering, numbering);
+        Numbering numbering = square.getNumbering();
+        Numbering previousNumbering = numbering.findPreviousNumbering();
+        return new Square(leftLettering, previousNumbering);
     }
 
     public Square findRightBackwardDiagonalSquare(Square square) {
         Lettering lettering = square.getLettering();
         Lettering rightLettering = lettering.findNextLettering();
-        Numbering numbering = Numbering.findPreviousNumbering(square.getNumbering());
-        return new Square(rightLettering, numbering);
+        Numbering numbering = square.getNumbering();
+        Numbering previousNumbering = numbering.findPreviousNumbering();
+        return new Square(rightLettering, previousNumbering);
     }
 
     public void movePiece(Square moveSource, Square target) {
