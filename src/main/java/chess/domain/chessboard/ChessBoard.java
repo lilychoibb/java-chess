@@ -5,9 +5,6 @@ import chess.domain.chesspiece.ChessPiece;
 import chess.domain.chesspiece.ChessPieceProperty;
 import chess.domain.chesspiece.ChessPieceType;
 import chess.domain.chesspiece.movestrategy.EmptyMoveStrategy;
-import chess.dto.ChessBoardDto;
-import chess.dto.ChessPieceDto;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ChessBoard {
@@ -92,14 +89,7 @@ public class ChessBoard {
         board.computeIfPresent(target, (k, v) -> moveSourceChessPiece);
     }
 
-    public ChessBoardDto createDto() {
-        Map<Square, ChessPieceDto> chessBoardInfo = new LinkedHashMap<>();
-
-        for (Square square : board.keySet()) {
-            ChessPiece chessPiece = board.get(square);
-            chessBoardInfo.put(square, chessPiece.createDto());
-        }
-
-        return new ChessBoardDto(chessBoardInfo);
+    public Map<Square, ChessPiece> getBoard() {
+        return board;
     }
 }
