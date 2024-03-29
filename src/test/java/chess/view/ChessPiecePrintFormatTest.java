@@ -19,7 +19,7 @@ class ChessPiecePrintFormatTest {
         Camp camp = Camp.WHITE;
         ChessPieceProperty chessPieceProperty = new ChessPieceProperty(ChessPieceType.KING, new KingMoveStrategy());
         ChessPiece chessPiece = new ChessPiece(camp, chessPieceProperty);
-        assertThat(ChessPiecePrintFormat.findChessPieceNotation(chessPiece.createDto())).isEqualTo("k");
+        assertThat(ChessPiecePrintFormat.findChessPieceNotation(chessPiece)).isEqualTo("k");
     }
 
     @Test
@@ -27,6 +27,6 @@ class ChessPiecePrintFormatTest {
         Camp camp = Camp.BLACK;
         ChessPieceProperty chessPieceProperty = new ChessPieceProperty(ChessPieceType.KING, new KingMoveStrategy());
         ChessPiece chessPiece = new ChessPiece(camp, chessPieceProperty);
-        assertThat(ChessPiecePrintFormat.findChessPieceNotation(chessPiece.createDto())).isEqualTo("K");
+        assertThat(ChessPiecePrintFormat.findChessPieceNotation(chessPiece)).isEqualTo("K");
     }
 }

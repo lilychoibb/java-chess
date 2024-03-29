@@ -2,6 +2,7 @@ package chess.view;
 
 import chess.domain.chessboard.Numbering;
 import chess.domain.chessboard.Square;
+import chess.domain.chesspiece.ChessPiece;
 import chess.dto.ChessBoardDto;
 import chess.dto.ChessPieceDto;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class OutputView {
     }
 
     public static void printChessBoard(ChessBoardDto chessBoardDto) {
-        Map<Square, ChessPieceDto> chessBoard = chessBoardDto.chessBoard();
+        Map<Square, ChessPiece> chessBoard = chessBoardDto.chessBoard();
         List<Numbering> numbering = reverseNumbering();
 
         for (Numbering number : numbering) {
@@ -40,21 +41,21 @@ public class OutputView {
         return numbering;
     }
 
-    private static List<Square> selectChessRow(Numbering number, Map<Square, ChessPieceDto> chessBoard) {
+    private static List<Square> selectChessRow(Numbering number, Map<Square, ChessPiece> chessBoard) {
         return chessBoard.keySet().stream()
                 .filter(square -> square.getNumbering() == number)
                 .toList();
     }
 
-    private static void printSquare(List<Square> chessRow, Map<Square, ChessPieceDto> chessBoard) {
+    private static void printSquare(List<Square> chessRow, Map<Square, ChessPiece> chessBoard) {
         for (Square square : chessRow) {
-            ChessPieceDto chessPieceDto = chessBoard.get(square);
-            printSquareWithChessPiece(chessPieceDto);
+            ChessPiece chessPiece = chessBoard.get(square);
+            printSquareWithChessPiece(chessPiece);
         }
     }
 
-    private static void printSquareWithChessPiece(ChessPieceDto chessPieceDto) {
-        String chessPieceNotation = ChessPiecePrintFormat.findChessPieceNotation(chessPieceDto);
+    private static void printSquareWithChessPiece(ChessPiece chessPiece) {
+        String chessPieceNotation = ChessPiecePrintFormat.findChessPieceNotation(chessPiece);
         System.out.print(chessPieceNotation);
     }
 

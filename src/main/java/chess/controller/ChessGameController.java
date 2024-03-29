@@ -56,7 +56,7 @@ public class ChessGameController {
     }
 
     private void printChessBoard(ChessBoard chessBoard) {
-        ChessBoardDto chessBoardDto = chessBoard.createDto();
+        ChessBoardDto chessBoardDto = new ChessBoardDto(chessBoard);
         OutputView.printChessBoard(chessBoardDto);
     }
 
