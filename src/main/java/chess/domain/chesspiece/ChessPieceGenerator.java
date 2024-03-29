@@ -4,7 +4,7 @@ import chess.domain.chessboard.Numbering;
 
 public class ChessPieceGenerator {
 
-    private static final ChessPieceGenerator instance = new ChessPieceGenerator();
+    private static final ChessPieceGenerator INSTANCE = new ChessPieceGenerator();
 
     private final ChessPieceCampAssignment chessPieceCampAssignment = ChessPieceCampAssignment.getInstance();
 
@@ -12,7 +12,7 @@ public class ChessPieceGenerator {
     }
 
     public static ChessPieceGenerator getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     public ChessPiece generate(ChessPieceType chessPieceType, Numbering numbering) {
