@@ -2,7 +2,6 @@ package chess.domain.chesspiece;
 
 import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
-import chess.dto.ChessPieceDto;
 
 public class ChessPiece {
 
@@ -16,10 +15,6 @@ public class ChessPiece {
 
     public void move(ChessBoard chessBoard, Square startSquare, Square targetSquare) {
         chessPieceProperty.executeMoveStrategy(chessBoard, startSquare, targetSquare);
-    }
-
-    public ChessPieceDto createDto() {
-        return new ChessPieceDto(getChessPieceType(), camp);
     }
 
     public ChessPieceType getChessPieceType() {
