@@ -1,9 +1,9 @@
 package chess.controller;
 
 import chess.domain.chessboard.ChessBoard;
-import chess.domain.chessgame.EndState;
-import chess.domain.chessgame.GameCommand;
-import chess.domain.chessgame.GameCommandExecutor;
+import chess.domain.chessgame.gamecommand.EndState;
+import chess.domain.chessgame.gamecommand.GameCommand;
+import chess.domain.chessgame.gamecommand.GameCommandExecutor;
 import chess.dto.ChessBoardDto;
 import chess.view.InputView;
 import chess.view.OutputView;

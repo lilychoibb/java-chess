@@ -1,11 +1,12 @@
-package chess.domain.chessgame;
+package chess.domain.chessgame.gamecommand;
 
 import chess.domain.chessboard.ChessBoard;
 import java.util.List;
 
 public class EndState implements GameCommandState {
 
-    private EndState() {}
+    private EndState() {
+    }
 
     private static class SingleInstanceHolder {
         private static final EndState INSTANCE = new EndState();

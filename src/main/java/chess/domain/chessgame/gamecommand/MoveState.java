@@ -1,22 +1,24 @@
-package chess.domain.chessgame;
+package chess.domain.chessgame.gamecommand;
 
 import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
+import chess.domain.chessgame.ChessGame;
 import java.util.List;
 
-public class StartState implements GameCommandState {
+public class MoveState implements GameCommandState {
 
     private static final int MOVE_SOURCE_SQUARE_INDEX = 0;
     private static final int TARGET_SQUARE_INDEX = 1;
 
-    private StartState() {}
-
-    private static class SingleInstanceHolder {
-        private static final StartState INSTANCE = new StartState();
+    private MoveState() {
     }
 
-    public static StartState getInstance() {
-        return SingleInstanceHolder.INSTANCE;
+    private static class SingleInstanceHolder {
+        private static final MoveState INSTANCE = new MoveState();
+    }
+
+    public static MoveState getInstance() {
+        return MoveState.SingleInstanceHolder.INSTANCE;
     }
 
     @Override
