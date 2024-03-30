@@ -29,8 +29,15 @@ public enum ChessPieceType {
         this.score = score;
     }
 
-    public static boolean isChessPieceTypeNone(ChessPieceType chessPieceType) {
-        return chessPieceType.equals(NONE);
+    public boolean isChessPieceTypeNone() {
+        return this.equals(NONE);
+    }
+
+    public double findChessPieceScore() {
+        ChessPieceType chessPieceType = Arrays.stream(values()).filter(type -> type.equals(this))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+        return chessPieceType.score;
     }
 
     public MoveStrategy getMoveStrategy() {

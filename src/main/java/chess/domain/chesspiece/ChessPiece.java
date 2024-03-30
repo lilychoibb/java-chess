@@ -15,7 +15,7 @@ public class ChessPiece {
     }
 
     public boolean isEmptyChessPiece() {
-        return ChessPieceType.isChessPieceTypeNone(getChessPieceType());
+        return getChessPieceType().isChessPieceTypeNone();
     }
 
     public boolean isChessPiecePawn() {

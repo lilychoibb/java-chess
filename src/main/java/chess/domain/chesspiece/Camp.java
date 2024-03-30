@@ -8,4 +8,8 @@ public enum Camp {
 
     Camp() {
     }
+
+    public boolean isSameCamp(Camp camp) {
+        return this.equals(camp);
+    }
 }

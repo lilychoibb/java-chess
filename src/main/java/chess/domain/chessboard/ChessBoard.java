@@ -95,6 +95,10 @@ public class ChessBoard {
         board.computeIfPresent(target, (k, v) -> moveSourceChessPiece);
     }
 
+    public Lettering letteringOfSquare(Square square) {
+        return square.getLettering();
+    }
+
     public Map<Square, ChessPiece> getBoard() {
         return board;
     }
