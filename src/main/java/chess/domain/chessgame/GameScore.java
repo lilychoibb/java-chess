@@ -70,6 +70,10 @@ public class GameScore {
                 .count();
     }
 
+    public boolean isTotalScoreHigh(GameScore gameScore) {
+        return totalScore > gameScore.totalScore;
+    }
+
     public double getTotalScore() {
         return totalScore;
     }
