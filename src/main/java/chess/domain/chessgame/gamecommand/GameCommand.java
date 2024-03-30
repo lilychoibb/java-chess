@@ -6,7 +6,8 @@ public enum GameCommand {
 
     START("start"),
     MOVE("move"),
-    END("end");
+    END("end"),
+    STATUS("status");
 
     private final String command;
 
@@ -35,5 +36,9 @@ public enum GameCommand {
 
     public boolean isMovedChessPiece() {
         return command.equals(MOVE.command);
+    }
+
+    public boolean isCheckGameStatus() {
+        return command.equals(STATUS.command);
     }
 }

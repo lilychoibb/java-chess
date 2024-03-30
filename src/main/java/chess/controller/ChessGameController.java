@@ -48,11 +48,16 @@ public class ChessGameController {
                                     List<String> input) {
         if (gameCommand.isGameStarted()) {
             gameCommandExecutor.executeStartCommand();
+            printChessBoard(chessBoard);
         }
         if (gameCommand.isMovedChessPiece()) {
             gameCommandExecutor.executeMoveCommand(chessBoard, input);
+            printChessBoard(chessBoard);
         }
-        printChessBoard(chessBoard);
+        if (gameCommand.isCheckGameStatus()) {
+            gameCommandExecutor.executeStatusCommand();
+            OutputView.printGameStatus(chessBoard);
+        }
     }
 
     private void printChessBoard(ChessBoard chessBoard) {
