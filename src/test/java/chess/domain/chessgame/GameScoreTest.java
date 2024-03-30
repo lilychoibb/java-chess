@@ -17,9 +17,8 @@ class GameScoreTest {
     void testCalculateTotalGameScore() {
         ChessBoard chessBoard = new ChessBoard();
         Camp camp = Camp.BLACK;
-        GameScore gameScore = new GameScore();
-        double totalScore = gameScore.calculateTotalScore(chessBoard, camp);
-        assertThat(totalScore).isEqualTo(38);
+        GameScore gameScore = new GameScore(chessBoard, camp);
+        assertThat(gameScore.getTotalScore()).isEqualTo(38);
     }
 
     @DisplayName("폰이 같은 세로줄에 있는 경우 점수를 올바르게 계산한다")
@@ -28,8 +27,7 @@ class GameScoreTest {
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.movePiece(new Square(Lettering.B, Numbering.SEVEN), new Square(Lettering.A, Numbering.SIX));
         Camp camp = Camp.BLACK;
-        GameScore gameScore = new GameScore();
-        double totalScore = gameScore.calculateTotalScore(chessBoard, camp);
-        assertThat(totalScore).isEqualTo(37);
+        GameScore gameScore = new GameScore(chessBoard, camp);
+        assertThat(gameScore.getTotalScore()).isEqualTo(37);
     }
 }

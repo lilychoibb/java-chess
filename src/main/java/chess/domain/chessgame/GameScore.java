@@ -15,10 +15,13 @@ public class GameScore {
 
     private static final double REDUCED_SCORE_FOR_PAWN = 0.5;
 
-    public GameScore() {
+    private final double totalScore;
+
+    public GameScore(ChessBoard chessBoard, Camp camp) {
+        this.totalScore = calculateTotalScore(chessBoard, camp);
     }
 
-    public double calculateTotalScore(ChessBoard chessBoard, Camp camp) {
+    private double calculateTotalScore(ChessBoard chessBoard, Camp camp) {
         List<ChessPieceType> chessPieceTypes = chessPieceTypesByCamp(chessBoard, camp);
         double totalScore = chessPieceTypes.stream()
                 .mapToDouble(ChessPieceType::findChessPieceScore)
@@ -65,5 +68,9 @@ public class GameScore {
         return letterings.stream()
                 .filter(lettering -> Collections.frequency(letterings, lettering) > 1)
                 .count();
+    }
+
+    public double getTotalScore() {
+        return totalScore;
     }
 }
