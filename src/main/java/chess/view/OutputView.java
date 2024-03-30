@@ -1,7 +1,11 @@
 package chess.view;
 
+import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Numbering;
 import chess.domain.chessboard.Square;
+import chess.domain.chessgame.GameScore;
+import chess.domain.chessgame.GameStatus;
+import chess.domain.chesspiece.Camp;
 import chess.domain.chesspiece.ChessPiece;
 import chess.dto.ChessBoardDto;
 import java.util.ArrayList;
@@ -56,6 +60,25 @@ public class OutputView {
     private static void printSquareWithChessPiece(ChessPiece chessPiece) {
         String chessPieceNotation = ChessPiecePrintFormat.findChessPieceNotation(chessPiece);
         System.out.print(chessPieceNotation);
+    }
+
+    public static void printGameStatus(ChessBoard chessBoard) {
+        GameScore blackGameScore = new GameScore(chessBoard, Camp.BLACK);
+        GameScore whiteGameScore = new GameScore(chessBoard, Camp.WHITE);
+        GameStatus gameStatus = new GameStatus();
+        Camp winCamp = gameStatus.calculateWinCamp(blackGameScore, whiteGameScore);
+        System.out.println(Camp.BLACK + " 의 점수는 " + blackGameScore.getTotalScore());
+        System.out.println(Camp.WHITE + " 의 점수는 " + whiteGameScore.getTotalScore());
+        printWinLoss(winCamp);
+    }
+
+    private static void printWinLoss(Camp camp) {
+        if (camp.isBlackCamp() || camp.isWhiteCamp()) {
+            System.out.println("현재 " + camp + " 진영이 이기고 있습니다.");
+        }
+        if (camp.isNoneCamp()) {
+            System.out.println("현재 무승부입니다.");
+        }
     }
 
     public static void printErrorMessage(String errorMessage) {
