@@ -35,4 +35,9 @@ public class MoveState implements GameCommandState {
         chessGame.executeTurn(moveSource, target);
         return MoveState.getInstance();
     }
+
+    @Override
+    public StatusState executeStatusCommand() {
+        return StatusState.getInstance();
+    }
 }

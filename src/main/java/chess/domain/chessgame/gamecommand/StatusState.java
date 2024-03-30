@@ -5,25 +5,25 @@ import chess.domain.chessboard.Square;
 import chess.domain.chessgame.ChessGame;
 import java.util.List;
 
-public class StartState implements GameCommandState {
+public class StatusState implements GameCommandState {
 
     private static final int MOVE_SOURCE_SQUARE_INDEX = 0;
     private static final int TARGET_SQUARE_INDEX = 1;
 
-    private StartState() {
+    private StatusState() {
     }
 
     private static class SingleInstanceHolder {
-        private static final StartState INSTANCE = new StartState();
+        private static final StatusState INSTANCE = new StatusState();
     }
 
-    public static StartState getInstance() {
-        return SingleInstanceHolder.INSTANCE;
+    public static StatusState getInstance() {
+        return StatusState.SingleInstanceHolder.INSTANCE;
     }
 
     @Override
     public StartState executeStartCommand() {
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR] 이미 시작되었습니다.");
     }
 
     @Override
@@ -38,6 +38,6 @@ public class StartState implements GameCommandState {
 
     @Override
     public StatusState executeStatusCommand() {
-        return StatusState.getInstance();
+        throw new IllegalArgumentException("[ERROR] 이미 현황을 확인했습니다.");
     }
 }

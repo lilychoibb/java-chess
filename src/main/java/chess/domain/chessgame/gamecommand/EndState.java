@@ -16,11 +16,18 @@ public class EndState implements GameCommandState {
         return EndState.SingleInstanceHolder.INSTANCE;
     }
 
+    @Override
     public StartState executeStartCommand() {
         return StartState.getInstance();
     }
 
+    @Override
     public MoveState executeMoveCommand(ChessBoard chessBoard, List<String> input) {
         throw new IllegalArgumentException("[ERROR] 게임이 시작되지 않아 움직일 수 없습니다.");
+    }
+
+    @Override
+    public StatusState executeStatusCommand() {
+        throw new IllegalArgumentException("[ERROR] 게임이 시작되지 않아 현황을 볼 수 없습니다.");
     }
 }

@@ -8,4 +8,6 @@ public interface GameCommandState {
     StartState executeStartCommand();
 
     MoveState executeMoveCommand(ChessBoard chessBoard, List<String> input);
+
+    StatusState executeStatusCommand();
 }

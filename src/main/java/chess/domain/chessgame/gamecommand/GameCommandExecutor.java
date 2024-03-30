@@ -18,4 +18,8 @@ public class GameCommandExecutor {
     public void executeMoveCommand(ChessBoard chessBoard, List<String> input) {
         gameCommandState = gameCommandState.executeMoveCommand(chessBoard, input);
     }
+
+    public void executeStatusCommand() {
+        gameCommandState = gameCommandState.executeStatusCommand();
+    }
 }
