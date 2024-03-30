@@ -22,6 +22,10 @@ public class ChessPiece {
         return chessPieceProperty.getChessPieceType() == ChessPieceType.PAWN;
     }
 
+    public boolean isChessPieceSameCamp(ChessPiece chessPiece) {
+        return getCamp() == chessPiece.getCamp();
+    }
+
     public Camp getCamp() {
         return camp;
     }

@@ -40,6 +40,10 @@ public enum ChessPieceType {
         return chessPieceType.score;
     }
 
+    public boolean isChessPieceSameType(ChessPiece chessPiece) {
+        return this == chessPiece.getChessPieceType();
+    }
+
     public MoveStrategy getMoveStrategy() {
         return moveStrategySupplier.get();
     }
