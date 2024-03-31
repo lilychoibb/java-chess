@@ -147,7 +147,7 @@ public class MoveRange {
     }
 
     public void addContinuousLeftForwardDiagonal(ChessBoard chessBoard, Square startSquare) {
-        while (!startSquare.isLeftMost() || !startSquare.isForwardMost()) {
+        while (!startSquare.isLeftMost() && !startSquare.isForwardMost()) {
             Square leftForwadDiagonalSquare = chessBoard.findLeftForwardDiagonalSquare(startSquare);
             ChessPiece chessPiece = chessBoard.findChessPieceOnSquare(leftForwadDiagonalSquare);
             ChessPiece movingChessPiece = chessBoard.findChessPieceOnSquare(startSquare);
@@ -386,7 +386,7 @@ public class MoveRange {
             return;
         }
         square = chessBoard.findRightSquare(square);
-        if (startSquare.isRightMost()) {
+        if (square.isRightMost()) {
             return;
         }
         square = chessBoard.findRightSquare(square);
@@ -407,7 +407,7 @@ public class MoveRange {
             return;
         }
         square = chessBoard.findRightSquare(square);
-        if (startSquare.isRightMost()) {
+        if (square.isRightMost()) {
             return;
         }
         square = chessBoard.findRightSquare(square);
