@@ -33,6 +33,14 @@ public enum ChessPieceType {
         return this.equals(NONE);
     }
 
+    public boolean isChessPieceTypeKing() {
+        return this.equals(KING);
+    }
+
+    public boolean isChessPieceTypePawn() {
+        return this.equals(PAWN);
+    }
+
     public double findChessPieceScore() {
         ChessPieceType chessPieceType = Arrays.stream(values()).filter(type -> type.equals(this))
                 .findFirst()

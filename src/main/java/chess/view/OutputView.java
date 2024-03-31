@@ -7,6 +7,7 @@ import chess.domain.chessgame.GameScore;
 import chess.domain.chessgame.GameStatus;
 import chess.domain.chesspiece.Camp;
 import chess.domain.chesspiece.ChessPiece;
+import chess.domain.chesspiece.ChessPieceType;
 import chess.dto.ChessBoardDto;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,6 +80,11 @@ public class OutputView {
         if (camp.isNoneCamp()) {
             System.out.println("현재 무승부입니다.");
         }
+    }
+
+    public static void printWhenKingDead(Camp camp) {
+        System.out.println(ChessPieceType.KING + " 이 잡혔습니다.");
+        System.out.println(camp + " 진영이 이겼습니다.");
     }
 
     public static void printErrorMessage(String errorMessage) {

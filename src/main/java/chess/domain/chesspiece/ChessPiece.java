@@ -19,7 +19,11 @@ public class ChessPiece {
     }
 
     public boolean isChessPiecePawn() {
-        return chessPieceProperty.getChessPieceType() == ChessPieceType.PAWN;
+        return getChessPieceType().isChessPieceTypePawn();
+    }
+
+    public boolean isChessPieceKing() {
+        return getChessPieceType().isChessPieceTypeKing();
     }
 
     public boolean isChessPieceSameCamp(ChessPiece chessPiece) {

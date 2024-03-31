@@ -10,6 +10,7 @@ import java.util.Map;
 public class ChessBoard {
 
     private static final BoardGenerator BOARD_GENERATOR = BoardGenerator.getInstance();
+    private static final int KING_TYPE_COUNT = 2;
 
     private final Map<Square, ChessPiece> board;
 
@@ -93,6 +94,21 @@ public class ChessBoard {
                 new ChessPieceProperty(ChessPieceType.NONE, new EmptyMoveStrategy()));
         board.computeIfPresent(moveSource, (k, v) -> emptyChessPiece);
         board.computeIfPresent(target, (k, v) -> moveSourceChessPiece);
+    }
+
+    public boolean isKingDead() {
+        return board.values()
+                .stream()
+                .filter(ChessPiece::isChessPieceKing).count() < KING_TYPE_COUNT;
+    }
+
+    public Camp campKingAlive() {
+        return board.values()
+                .stream()
+                .filter(ChessPiece::isChessPieceKing)
+                .map(ChessPiece::getCamp)
+                .findFirst()
+                .orElseThrow();
     }
 
     public Lettering letteringOfSquare(Square square) {
