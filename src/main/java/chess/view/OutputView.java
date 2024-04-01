@@ -87,6 +87,13 @@ public class OutputView {
         System.out.println(camp + " 진영이 이겼습니다.");
     }
 
+    public static void printTurn(Camp camp) {
+        if (!camp.isNoneCamp()) {
+            System.out.println(camp + " 진영의 차례를 마쳤습니다.");
+            System.out.println(camp.findEnemyCamp() + " 진영의 차례입니다.");
+        }
+    }
+
     public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
