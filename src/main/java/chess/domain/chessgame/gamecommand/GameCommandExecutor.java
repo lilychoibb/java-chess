@@ -1,6 +1,7 @@
 package chess.domain.chessgame.gamecommand;
 
-import chess.domain.chessboard.ChessBoard;
+import chess.domain.chessboard.Square;
+import chess.domain.chessgame.ChessGame;
 import java.util.List;
 
 public class GameCommandExecutor {
@@ -15,8 +16,8 @@ public class GameCommandExecutor {
         gameCommandState = gameCommandState.executeStartCommand();
     }
 
-    public void executeMoveCommand(ChessBoard chessBoard, List<String> input) {
-        gameCommandState = gameCommandState.executeMoveCommand(chessBoard, input);
+    public void executeMoveCommand(ChessGame chessGame, List<Square> moveSquare) {
+        gameCommandState = gameCommandState.executeMoveCommand(chessGame, moveSquare);
     }
 
     public void executeStatusCommand() {

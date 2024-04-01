@@ -1,6 +1,5 @@
 package chess.domain.chessgame.gamecommand;
 
-import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
 import chess.domain.chessgame.ChessGame;
 import java.util.List;
@@ -27,9 +26,7 @@ public class StatusState implements GameCommandState {
     }
 
     @Override
-    public MoveState executeMoveCommand(ChessBoard chessBoard, List<String> input) {
-        ChessGame chessGame = new ChessGame(chessBoard);
-        List<Square> moveSquare = chessGame.settingMoveSquare(input);
+    public MoveState executeMoveCommand(ChessGame chessGame, List<Square> moveSquare) {
         Square moveSource = moveSquare.get(MOVE_SOURCE_SQUARE_INDEX);
         Square target = moveSquare.get(TARGET_SQUARE_INDEX);
         chessGame.executeTurn(moveSource, target);

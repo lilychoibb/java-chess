@@ -1,6 +1,7 @@
 package chess.domain.chessgame.gamecommand;
 
-import chess.domain.chessboard.ChessBoard;
+import chess.domain.chessboard.Square;
+import chess.domain.chessgame.ChessGame;
 import java.util.List;
 
 public class EndState implements GameCommandState {
@@ -22,7 +23,7 @@ public class EndState implements GameCommandState {
     }
 
     @Override
-    public MoveState executeMoveCommand(ChessBoard chessBoard, List<String> input) {
+    public MoveState executeMoveCommand(ChessGame chessGame, List<Square> moveSquare) {
         throw new IllegalArgumentException("[ERROR] 게임이 시작되지 않아 움직일 수 없습니다.");
     }
 
