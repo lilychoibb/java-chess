@@ -15,7 +15,7 @@ class GameScoreTest {
     @DisplayName("각 진영의 게임 점수를 올바르게 계산한다")
     @Test
     void testCalculateTotalGameScore() {
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = ChessBoard.initialBoard();
         Camp camp = Camp.BLACK;
         GameScore gameScore = new GameScore(chessBoard, camp);
         assertThat(gameScore.getTotalScore()).isEqualTo(38);
@@ -24,7 +24,7 @@ class GameScoreTest {
     @DisplayName("폰이 같은 세로줄에 있는 경우 점수를 올바르게 계산한다")
     @Test
     void testCalculateTotalGameScore_WhenPawnIsSameVerticalLine() {
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = ChessBoard.initialBoard();
         chessBoard.movePiece(new Square(Lettering.B, Numbering.SEVEN), new Square(Lettering.A, Numbering.SIX));
         Camp camp = Camp.BLACK;
         GameScore gameScore = new GameScore(chessBoard, camp);

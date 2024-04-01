@@ -48,11 +48,13 @@ public enum ChessPieceType {
         return chessPieceType.score;
     }
 
-    public boolean isChessPieceSameType(ChessPiece chessPiece) {
-        return this == chessPiece.getChessPieceType();
-    }
-
     public MoveStrategy getMoveStrategy() {
         return moveStrategySupplier.get();
+    }
+
+    public static ChessPieceType findChessPieceType(String chessPieceType) {
+        return Arrays.stream(values())
+                .filter(chessPieceTypeObj -> chessPieceTypeObj.toString().equals(chessPieceType))
+                .findFirst().orElseThrow();
     }
 }

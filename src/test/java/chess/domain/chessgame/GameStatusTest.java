@@ -15,7 +15,7 @@ class GameStatusTest {
     @DisplayName("현재 이기고 있는 진영을 올바르게 계산한다")
     @Test
     void testCalculateWinCamp() {
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = ChessBoard.initialBoard();
         chessBoard.movePiece(new Square(Lettering.A, Numbering.TWO), new Square(Lettering.A, Numbering.SEVEN));
         GameScore blackCampGameScore = new GameScore(chessBoard, Camp.BLACK);
         GameScore whiteCampGameScore = new GameScore(chessBoard, Camp.WHITE);

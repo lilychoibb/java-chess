@@ -41,4 +41,8 @@ public enum Numbering {
         int findNumberingValue = value - 1;
         return findNumbering(findNumberingValue);
     }
+
+    public int getValue() {
+        return value;
+    }
 }

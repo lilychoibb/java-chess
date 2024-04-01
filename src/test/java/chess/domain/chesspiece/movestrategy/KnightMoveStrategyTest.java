@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class KnightMoveStrategyTest {
 
-    private final ChessBoard chessBoard = new ChessBoard();
+    private final ChessBoard chessBoard = ChessBoard.initialBoard();
 
     @BeforeEach
     void setUp() {

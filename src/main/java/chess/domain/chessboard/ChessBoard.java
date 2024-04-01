@@ -18,8 +18,12 @@ public class ChessBoard {
         this.board = board;
     }
 
-    public ChessBoard() {
-        this(BOARD_GENERATOR.generate());
+    public static ChessBoard initialBoard() {
+        return new ChessBoard(BOARD_GENERATOR.generate());
+    }
+
+    public static ChessBoard from(Map<Square, ChessPiece> chessBoard) {
+        return new ChessBoard(chessBoard);
     }
 
     public void move(Square startSquare, Square targetSquare) {

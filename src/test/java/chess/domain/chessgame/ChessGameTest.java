@@ -2,7 +2,7 @@ package chess.domain.chessgame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Lettering;
@@ -18,7 +18,7 @@ class ChessGameTest {
 
     @Test
     void 입력받은_움직일_칸과_목적지_칸을_생성한다() {
-        ChessGame chessGame = new ChessGame(new ChessBoard());
+        ChessGame chessGame = new ChessGame(ChessBoard.initialBoard());
         List<String> input = List.of("move", "b2", "b3");
         assertAll(
                 () -> assertThat(chessGame.settingMoveSquare(input).get(0)).isEqualTo(
@@ -30,7 +30,7 @@ class ChessGameTest {
 
     @Test
     void 입력받은_움직일_칸에_체스_말이_없으면_예외를_발생시킨다() {
-        ChessGame chessGame = new ChessGame(new ChessBoard());
+        ChessGame chessGame = new ChessGame(ChessBoard.initialBoard());
         assertThatThrownBy(() -> chessGame.executeTurn(
                 new Square(Lettering.C, Numbering.THREE), new Square(Lettering.C, Numbering.FOUR)))
                 .isInstanceOf(IllegalArgumentException.class);

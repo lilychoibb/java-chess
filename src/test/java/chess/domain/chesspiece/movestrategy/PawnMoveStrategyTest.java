@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class PawnMoveStrategyTest {
 
-    private final ChessBoard chessBoard = new ChessBoard();
+    private final ChessBoard chessBoard = ChessBoard.initialBoard();
 
     @Test
     void 목적지가_Pawn이_움직일_수_있는_범위이면_움직인다() {

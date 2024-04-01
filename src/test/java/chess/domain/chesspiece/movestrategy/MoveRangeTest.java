@@ -18,7 +18,7 @@ class MoveRangeTest {
 
     @BeforeEach
     void setUp() {
-        chessBoard = new ChessBoard();
+        chessBoard = ChessBoard.initialBoard();
         moveRange = new MoveRange();
     }
 

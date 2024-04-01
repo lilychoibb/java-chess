@@ -41,4 +41,8 @@ public enum Lettering {
         int findLetteringValue = value - 1;
         return findLettering(findLetteringValue);
     }
+
+    public int getValue() {
+        return value;
+    }
 }
