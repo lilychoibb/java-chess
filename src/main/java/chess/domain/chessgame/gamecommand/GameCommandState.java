@@ -1,14 +1,15 @@
 package chess.domain.chessgame.gamecommand;
 
+import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
 import chess.domain.chessgame.ChessGame;
 import java.util.List;
 
 public interface GameCommandState {
 
-    StartState executeStartCommand();
+    void executeStartCommand(ChessBoard chessBoard);
 
-    MoveState executeMoveCommand(ChessGame chessGame, List<Square> moveSquare);
+    void executeMoveCommand(ChessGame chessGame, List<Square> moveSquare);
 
-    StatusState executeStatusCommand();
+    void executeStatusCommand(ChessBoard chessBoard);
 }

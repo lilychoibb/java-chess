@@ -1,13 +1,11 @@
 package chess.domain.chessgame.gamecommand;
 
+import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
 import chess.domain.chessgame.ChessGame;
 import java.util.List;
 
 public class StatusState implements GameCommandState {
-
-    private static final int MOVE_SOURCE_SQUARE_INDEX = 0;
-    private static final int TARGET_SQUARE_INDEX = 1;
 
     private StatusState() {
     }
@@ -21,20 +19,20 @@ public class StatusState implements GameCommandState {
     }
 
     @Override
-    public StartState executeStartCommand() {
+    public void executeStartCommand(ChessBoard chessBoard) {
         throw new IllegalArgumentException("[ERROR] 이미 시작되었습니다.");
     }
 
     @Override
-    public MoveState executeMoveCommand(ChessGame chessGame, List<Square> moveSquare) {
-        Square moveSource = moveSquare.get(MOVE_SOURCE_SQUARE_INDEX);
-        Square target = moveSquare.get(TARGET_SQUARE_INDEX);
-        chessGame.executeTurn(moveSource, target);
-        return MoveState.getInstance();
+    public void executeMoveCommand(ChessGame chessGame, List<Square> moveSquares) {
+        chessGame.executeTurn(moveSquares);
     }
 
     @Override
-    public StatusState executeStatusCommand() {
-        throw new IllegalArgumentException("[ERROR] 이미 현황을 확인했습니다.");
+    public void executeStatusCommand(ChessBoard chessBoard) {
+    }
+
+    public boolean isStatusState(GameCommandState gameCommandState) {
+        return gameCommandState.equals(this);
     }
 }
