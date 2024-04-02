@@ -2,9 +2,16 @@ package chess.domain.chessgame;
 
 import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
+import chess.domain.chessgame.gamecommand.GameCommandExecutor;
+import chess.domain.chessgame.gamecommand.GameCommandState;
+import chess.domain.chessgame.gamecommand.GameElements;
+import chess.domain.chesspiece.Camp;
 import java.util.List;
 
 public class ChessGame {
+
+    private static final int MOVE_SOURCE_SQUARE_INDEX = 0;
+    private static final int TARGET_SQUARE_INDEX = 1;
 
     private final ChessBoard chessBoard;
 
@@ -12,21 +19,23 @@ public class ChessGame {
         this.chessBoard = chessBoard;
     }
 
-    public List<Square> settingMoveSquare(List<String> input) {
-        return createMoveSquare(extractMoveSquare(input));
+    public void executeGame(GameCommandState gameCommandState, GameElements gameElements) {
+        GameCommandExecutor gameCommandExecutor = new GameCommandExecutor();
+        gameCommandExecutor.setGameCommandState(gameCommandState);
+        gameCommandExecutor.execute(chessBoard, gameElements);
     }
 
-    private List<String> extractMoveSquare(List<String> input) {
-        return input.subList(1, input.size());
-    }
-
-    private List<Square> createMoveSquare(List<String> moveSquare) {
-        Square moveSource = new Square(moveSquare.get(0));
-        Square target = new Square(moveSquare.get(1));
-        return List.of(moveSource, target);
-    }
-
-    public void executeTurn(Square moveSource, Square target) {
+    public void executeTurn(List<Square> moveSquares) {
+        Square moveSource = moveSquares.get(MOVE_SOURCE_SQUARE_INDEX);
+        Square target = moveSquares.get(TARGET_SQUARE_INDEX);
         chessBoard.move(moveSource, target);
+    }
+
+    public Camp findCampKingAlive() {
+        return chessBoard.campKingAlive();
+    }
+
+    public boolean isGameFinished() {
+        return chessBoard.isKingDead();
     }
 }

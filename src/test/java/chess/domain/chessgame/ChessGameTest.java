@@ -8,6 +8,9 @@ import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Lettering;
 import chess.domain.chessboard.Numbering;
 import chess.domain.chessboard.Square;
+import chess.domain.chessgame.gamecommand.GameCommand;
+import chess.domain.chessgame.gamecommand.GameElements;
+import chess.domain.chessgame.gamecommand.MoveElements;
 import java.util.List;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -18,12 +21,11 @@ class ChessGameTest {
 
     @Test
     void 입력받은_움직일_칸과_목적지_칸을_생성한다() {
-        ChessGame chessGame = new ChessGame(ChessBoard.initialBoard());
-        List<String> input = List.of("move", "b2", "b3");
+        GameElements gameElements = new GameElements(GameCommand.MOVE, new MoveElements("b2", "b3"));
         assertAll(
-                () -> assertThat(chessGame.settingMoveSquare(input).get(0)).isEqualTo(
+                () -> assertThat(gameElements.createMoveSquare().get(0)).isEqualTo(
                         new Square(Lettering.B, Numbering.TWO)),
-                () -> assertThat(chessGame.settingMoveSquare(input).get(1)).isEqualTo(
+                () -> assertThat(gameElements.createMoveSquare().get(1)).isEqualTo(
                         new Square(Lettering.B, Numbering.THREE))
         );
     }
@@ -31,8 +33,10 @@ class ChessGameTest {
     @Test
     void 입력받은_움직일_칸에_체스_말이_없으면_예외를_발생시킨다() {
         ChessGame chessGame = new ChessGame(ChessBoard.initialBoard());
-        assertThatThrownBy(() -> chessGame.executeTurn(
-                new Square(Lettering.C, Numbering.THREE), new Square(Lettering.C, Numbering.FOUR)))
+        List<Square> moveSquares = List.of(
+                new Square(Lettering.C, Numbering.THREE), new Square(Lettering.C, Numbering.FOUR)
+        );
+        assertThatThrownBy(() -> chessGame.executeTurn(moveSquares))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
