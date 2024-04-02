@@ -1,10 +1,15 @@
 package chess.view;
 
+import chess.dao.TurnDao;
 import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Numbering;
 import chess.domain.chessboard.Square;
 import chess.domain.chessgame.GameScore;
 import chess.domain.chessgame.GameStatus;
+import chess.domain.chessgame.gamecommand.GameCommandState;
+import chess.domain.chessgame.gamecommand.MoveState;
+import chess.domain.chessgame.gamecommand.StartState;
+import chess.domain.chessgame.gamecommand.StatusState;
 import chess.domain.chesspiece.Camp;
 import chess.domain.chesspiece.ChessPiece;
 import chess.domain.chesspiece.ChessPieceType;
@@ -28,7 +33,21 @@ public class OutputView {
         System.out.printf("%s 게임 이동 %s move source위치 target위치 - 예. move b2 b3 %s", ">", ":", LINE_SEPARATOR);
     }
 
-    public static void printChessBoard(ChessBoardDto chessBoardDto) {
+    public static void printGameExecute(GameCommandState gameCommandState, ChessBoard chessBoard) {
+        ChessBoardDto chessBoardDto = new ChessBoardDto(chessBoard);
+        if (StartState.getInstance().isStartState(gameCommandState)) {
+            printChessBoard(chessBoardDto);
+        }
+        if (MoveState.getInstance().isMoveState(gameCommandState)) {
+            printChessBoard(chessBoardDto);
+            printTurn(new TurnDao().findTurn());
+        }
+        if (StatusState.getInstance().isStatusState(gameCommandState)) {
+            printGameStatus(chessBoard);
+        }
+    }
+
+    private static void printChessBoard(ChessBoardDto chessBoardDto) {
         Map<Square, ChessPiece> chessBoard = chessBoardDto.chessBoard();
         List<Numbering> numbering = reverseNumbering();
 
@@ -63,7 +82,7 @@ public class OutputView {
         System.out.print(chessPieceNotation);
     }
 
-    public static void printGameStatus(ChessBoard chessBoard) {
+    private static void printGameStatus(ChessBoard chessBoard) {
         GameScore blackGameScore = new GameScore(chessBoard, Camp.BLACK);
         GameScore whiteGameScore = new GameScore(chessBoard, Camp.WHITE);
         GameStatus gameStatus = new GameStatus();
@@ -87,7 +106,7 @@ public class OutputView {
         System.out.println(camp + " 진영이 이겼습니다.");
     }
 
-    public static void printTurn(Camp camp) {
+    private static void printTurn(Camp camp) {
         if (!camp.isNoneCamp()) {
             System.out.println(camp + " 진영의 차례를 마쳤습니다.");
             System.out.println(camp.findEnemyCamp() + " 진영의 차례입니다.");
