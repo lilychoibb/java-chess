@@ -80,7 +80,7 @@ public class ChessBoardDao {
                 resultSet.getString("chessPieceType"));
         ChessPieceProperty chessPieceProperty = new ChessPieceProperty(chessPieceType,
                 chessPieceType.getMoveStrategy());
-        return new ChessPiece(camp, chessPieceProperty);
+        return ChessPiece.of(camp, chessPieceProperty);
     }
 
     public void deleteChessBoard() {

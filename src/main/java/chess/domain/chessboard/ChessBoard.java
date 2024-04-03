@@ -94,7 +94,7 @@ public class ChessBoard {
 
     public void movePiece(Square moveSource, Square target) {
         ChessPiece moveSourceChessPiece = board.get(moveSource);
-        ChessPiece emptyChessPiece = new ChessPiece(Camp.NONE,
+        ChessPiece emptyChessPiece = ChessPiece.of(Camp.NONE,
                 new ChessPieceProperty(ChessPieceType.NONE, new EmptyMoveStrategy()));
         board.computeIfPresent(moveSource, (k, v) -> emptyChessPiece);
         board.computeIfPresent(target, (k, v) -> moveSourceChessPiece);
@@ -113,10 +113,6 @@ public class ChessBoard {
                 .map(ChessPiece::getCamp)
                 .findFirst()
                 .orElseThrow();
-    }
-
-    public Lettering letteringOfSquare(Square square) {
-        return square.getLettering();
     }
 
     public Map<Square, ChessPiece> getBoard() {
