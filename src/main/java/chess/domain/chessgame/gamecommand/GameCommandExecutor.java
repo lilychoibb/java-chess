@@ -3,7 +3,6 @@ package chess.domain.chessgame.gamecommand;
 import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Square;
 import chess.domain.chessgame.ChessGame;
-import chess.service.ChessGameService;
 import java.util.List;
 
 public class GameCommandExecutor {
@@ -31,18 +30,12 @@ public class GameCommandExecutor {
             executeStartCommand(chessBoard);
         }
         if (MoveState.getInstance().isMoveState(gameCommandState)) {
-            executeMoveState(chessBoard, gameElements);
+            ChessGame chessGame = new ChessGame(chessBoard);
+            List<Square> moveSquares = gameElements.createMoveSquare();
+            executeMoveCommand(chessGame, moveSquares);
         }
         if (StatusState.getInstance().isStatusState(gameCommandState)) {
             executeStatusCommand(chessBoard);
         }
-    }
-
-    private void executeMoveState(ChessBoard chessBoard, GameElements gameElements) {
-        ChessGame chessGame = new ChessGame(chessBoard);
-        ChessGameService chessGameService = new ChessGameService();
-        List<Square> moveSquares = gameElements.createMoveSquare();
-        chessGameService.updateChessGame(chessBoard, moveSquares);
-        executeMoveCommand(chessGame, moveSquares);
     }
 }
