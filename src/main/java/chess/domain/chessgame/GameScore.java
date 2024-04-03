@@ -35,33 +35,30 @@ public class GameScore {
                 .toList();
     }
 
-    private Stream<ChessPiece> filterChessPiecesByCamp(ChessBoard chessBoard, Camp camp) {
-        return chessBoard.getBoard()
-                .values()
-                .stream()
-                .filter(chessPiece -> chessPiece.getCamp().isSameCamp(camp));
-    }
-
     private long pawnCountWhereSameVerticalLine(ChessBoard chessBoard, Camp camp) {
         List<Lettering> letterings = extractPawnLetterings(chessBoard, camp);
         return countDuplicates(letterings);
     }
 
-    private List<Lettering> extractPawnLetterings(ChessBoard chessBoard, Camp camp) {
-        return filterChessPiecesByCamp(chessBoard, camp)
-                .filter(ChessPiece::isChessPiecePawn)
-                .map(chessPiece -> chessBoard.letteringOfSquare(findSquareOfChessPiece(chessBoard, chessPiece)))
-                .toList();
+    private Stream<ChessPiece> filterChessPiecesByCamp(ChessBoard chessBoard, Camp camp) {
+        return chessBoard.getBoard()
+                .values()
+                .stream()
+                .filter(board -> board.getCamp().isSameCamp(camp));
     }
 
-    private Square findSquareOfChessPiece(ChessBoard chessBoard, ChessPiece chessPiece) {
+    private List<Lettering> extractPawnLetterings(ChessBoard chessBoard, Camp camp) {
         return chessBoard.getBoard()
                 .entrySet()
                 .stream()
-                .filter(entry -> entry.getValue() == chessPiece)
+                .filter(entry -> isSameCampPawn(entry.getValue(), camp))
                 .map(Map.Entry::getKey)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .map(Square::getLettering)
+                .toList();
+    }
+
+    private boolean isSameCampPawn(ChessPiece chessPiece, Camp camp) {
+        return chessPiece.getCamp().isSameCamp(camp) && chessPiece.isChessPiecePawn();
     }
 
     private long countDuplicates(List<Lettering> letterings) {
