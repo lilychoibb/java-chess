@@ -5,7 +5,6 @@ import chess.domain.chessboard.ChessBoard;
 import chess.domain.chessboard.Numbering;
 import chess.domain.chessboard.Square;
 import chess.domain.chessgame.GameScore;
-import chess.domain.chessgame.GameStatus;
 import chess.domain.chessgame.gamecommand.GameCommandState;
 import chess.domain.chessgame.gamecommand.MoveState;
 import chess.domain.chessgame.gamecommand.StartState;
@@ -85,8 +84,7 @@ public class OutputView {
     private static void printGameStatus(ChessBoard chessBoard) {
         GameScore blackGameScore = new GameScore(chessBoard, Camp.BLACK);
         GameScore whiteGameScore = new GameScore(chessBoard, Camp.WHITE);
-        GameStatus gameStatus = new GameStatus();
-        Camp winCamp = gameStatus.calculateWinCamp(blackGameScore, whiteGameScore);
+        Camp winCamp = blackGameScore.winCamp(whiteGameScore);
         System.out.println(Camp.BLACK + " 의 점수는 " + blackGameScore.getTotalScore());
         System.out.println(Camp.WHITE + " 의 점수는 " + whiteGameScore.getTotalScore());
         printWinLoss(winCamp);

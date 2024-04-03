@@ -15,9 +15,11 @@ public class GameScore {
 
     private static final double REDUCED_SCORE_FOR_PAWN = 0.5;
 
+    private final Camp camp;
     private final double totalScore;
 
     public GameScore(ChessBoard chessBoard, Camp camp) {
+        this.camp = camp;
         this.totalScore = calculateTotalScore(chessBoard, camp);
     }
 
@@ -67,8 +69,22 @@ public class GameScore {
                 .count();
     }
 
-    public boolean isTotalScoreHigh(GameScore gameScore) {
+    public Camp winCamp(GameScore gameScore) {
+        if (isTotalScoreHigh(gameScore)) {
+            return camp;
+        }
+        if (isTotalScoreLow(gameScore)) {
+            return camp.findEnemyCamp();
+        }
+        return Camp.NONE;
+    }
+
+    private boolean isTotalScoreHigh(GameScore gameScore) {
         return totalScore > gameScore.totalScore;
+    }
+
+    private boolean isTotalScoreLow(GameScore gameScore) {
+        return totalScore < gameScore.totalScore;
     }
 
     public double getTotalScore() {
