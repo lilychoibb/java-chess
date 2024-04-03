@@ -20,8 +20,7 @@ public class ChessGame {
     }
 
     public void executeGame(GameCommandState gameCommandState, GameElements gameElements) {
-        GameCommandExecutor gameCommandExecutor = new GameCommandExecutor();
-        gameCommandExecutor.setGameCommandState(gameCommandState);
+        GameCommandExecutor gameCommandExecutor = new GameCommandExecutor(gameCommandState);
         gameCommandExecutor.execute(chessBoard, gameElements);
     }
 

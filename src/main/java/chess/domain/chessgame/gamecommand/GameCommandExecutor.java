@@ -8,13 +8,9 @@ import java.util.List;
 
 public class GameCommandExecutor {
 
-    private GameCommandState gameCommandState;
+    private final GameCommandState gameCommandState;
 
-    public GameCommandExecutor() {
-        this.gameCommandState = EndState.getInstance();
-    }
-
-    public void setGameCommandState(GameCommandState gameCommandState) {
+    public GameCommandExecutor(GameCommandState gameCommandState) {
         this.gameCommandState = gameCommandState;
     }
 
