@@ -42,6 +42,22 @@ public enum Numbering {
         return findNumbering(findNumberingValue);
     }
 
+    public boolean isWhiteCampNumbering() {
+        return this == ONE || this == TWO;
+    }
+
+    public boolean isBlackCampNumbering() {
+        return this == SEVEN || this == EIGHT;
+    }
+
+    public boolean isWhiteCampStartNumbering() {
+        return this.equals(TWO);
+    }
+
+    public boolean isBlackCampStartNumbering() {
+        return this.equals(SEVEN);
+    }
+
     public int getValue() {
         return value;
     }
